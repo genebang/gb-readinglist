@@ -1,0 +1,19 @@
+li class=("row rating-#{book.rating}") 
+  .col-sm-3
+    a href="#" target="_blank" 
+      = image_from_amazon(book.amazon_id)
+    p.text-center.rating
+      strong>= book.rating
+      |/5
+  .col-sm-9
+    h3
+      a href="#" = book.title
+    p.text-muted
+      em
+        | Written by #{book.author}
+    div
+      p
+        = book.description
+    / span
+    /   - book.genres.each do |genre|
+    /     = link_to genre.name, '#', class: 'label label-primary'

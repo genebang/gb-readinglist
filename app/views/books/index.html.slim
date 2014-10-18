@@ -1,16 +1,57 @@
-h1 books
-
-table
-  thead
-    tr
-      th Title
-      th Author
-      th Description
-      th Amazon ID
-  tbody
-    - @books.each do |book|
-      tr class=("finished" if book.finished?)
-        td= book.title
-        td= book.author
-        td= book.description
-        td= book.amazon_id
+.container
+  h1 Reading List
+  ol.breadcrumb
+    li.active
+      | Books
+  .row
+    .col-sm-12
+      p
+        form
+          legend Search
+          .col-xs-4
+            input.form-control name="keyword" placeholder="Keyword" type="text" value=(params[:keyword])
+      p.pull-right
+        a#show-form.btn.btn-primary href="#"  New Book Form
+  hr
+    .col-sm-12.book-form
+      / p
+      /   = form_for(Book.new, remote: true,           \
+      /     html: { class: 'horizontal-form' }) do |f| \
+      /     legend New Book
+      /     .col-sm-5
+      /       .form-group
+      /         label
+      /           strong Genre
+      /         - @genres.each do |genre|
+      /           .checkbox
+      /             label
+      /               = check_box_tag 'book[genre_ids][]', genre.id
+      /               = genre.name
+      /       br
+      /         .form-group
+      /           = f.text_field :title, class: 'form-control', placeholder: 'Title'
+      /         .form-group
+      /           = f.text_field :author, class: 'form-control', placeholder: 'Author'
+      /         .form-group
+      /           = f.text_field :description, class: 'form-control', placeholder: 'Description'
+      /         .form-group
+      /           = f.text_field :amazon_id, class: 'form-control', placeholder: 'Amazon ID'
+      /         .form-group
+      /           legend Rating
+      /           - (1..5).each do |rating|
+      /             label.radio-inline
+      /               = rating
+      /               = f.radio_button :rating, rating
+      /         .form-group
+      /           = f.submit class: 'btn btn-primary'
+    .row
+      .col-sm-8
+        ul.list-unstyled.book-list
+          = render @books
+      / .col-sm-4
+      /   h2 Genres
+      /   ul.list-unstyled
+      /     - @genres.each do |genre|
+      /       li
+      /         = link_to genre.name, books_path(filter: genre.name), \
+      /           class: 'label label-primary'                        \
