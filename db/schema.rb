@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018013039) do
+ActiveRecord::Schema.define(version: 20141020184901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "book_genres", force: true do |t|
+    t.integer  "book_id"
+    t.integer  "genre_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "book_genres", ["book_id"], name: "index_book_genres_on_book_id", using: :btree
+  add_index "book_genres", ["genre_id"], name: "index_book_genres_on_genre_id", using: :btree
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -26,6 +36,12 @@ ActiveRecord::Schema.define(version: 20141018013039) do
     t.integer  "rating"
     t.date     "finished_on"
     t.text     "keywords"
+  end
+
+  create_table "genres", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

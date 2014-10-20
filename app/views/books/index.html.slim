@@ -48,10 +48,9 @@
       .col-sm-8
         ul.list-unstyled.book-list
           = render @books
-      / .col-sm-4
-      /   h2 Genres
-      /   ul.list-unstyled
-      /     - @genres.each do |genre|
-      /       li
-      /         = link_to genre.name, books_path(filter: genre.name), \
-      /           class: 'label label-primary'                        \
+      .col-sm-4
+        h2 Genres
+        ul.list-unstyled
+          - @genres.each do |genre|
+            li
+              = link_to genre.name, books_path(filter: genre.name), class: 'label label-primary'
