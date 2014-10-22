@@ -1,7 +1,7 @@
 Reading list app
 ================
 
-https://fierce-depths-8280.herokuapp.com/
+http://fierce-depths-8280.herokuapp.com/
 
 Simple Rails 4 app that lets a user keep track of books they are reading.
 
@@ -14,3 +14,4 @@ To do:
   * add show action for a book
   * add edit action for a book
   * add users for multiple book lists
+  * show when a book is finished by the user
